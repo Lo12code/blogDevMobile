@@ -1,30 +1,29 @@
 import { useRouter } from "expo-router";
-import { signInWithEmailAndPassword } from "firebase/auth";
+import { createUserWithEmailAndPassword } from "firebase/auth";
 import React, { useState } from "react";
 import { StyleSheet, View } from "react-native";
 import { ActivityIndicator, Button, Text, TextInput } from "react-native-paper";
-import { auth } from "../../firebase/config"; // adjust path if needed
+import { auth } from "../../firebase/config";
 
-export default function LoginScreen() {
-  const router = useRouter();
-
+export default function CreateAccountScreen() {
+  const router = useRouter(); // 🚀 expo-router navigation
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
 
-  const handleLogin = async () => {
+  const handleCreateAccount = async () => {
     setLoading(true);
     setError("");
 
     try {
-      await signInWithEmailAndPassword(auth, email.trim(), password);
-      router.replace("index"); // or `router.push("/home")`
-    } catch (err: unknown) {
-      if (err instanceof Error) {
-        setError(err.message);
+      await createUserWithEmailAndPassword(auth, email.trim(), password);
+      router.replace("/login"); // ✅ navegação via expo-router
+    } catch (error: unknown) {
+      if (error instanceof Error) {
+        setError(error.message);
       } else {
-        setError("Erro desconhecido.");
+        setError("An unknown error occurred");
       }
     }
 
@@ -33,7 +32,7 @@ export default function LoginScreen() {
 
   return (
     <View style={styles.container}>
-      <Text variant="titleLarge" style={styles.title}>Login</Text>
+      <Text variant="titleLarge" style={styles.title}>Create Account</Text>
 
       <TextInput
         label="Email"
@@ -45,7 +44,7 @@ export default function LoginScreen() {
       />
 
       <TextInput
-        label="Senha"
+        label="Password"
         value={password}
         onChangeText={setPassword}
         secureTextEntry
@@ -56,18 +55,11 @@ export default function LoginScreen() {
 
       <Button
         mode="contained"
-        onPress={handleLogin}
+        onPress={handleCreateAccount}
         disabled={loading}
         style={styles.button}
       >
-        {loading ? <ActivityIndicator color="white" /> : "Entrar"}
-      </Button>
-
-      <Button
-        onPress={() => router.push("/createAccount")}
-        style={styles.link}
-      >
-        Criar uma conta
+        {loading ? <ActivityIndicator color="white" /> : "Sign Up"}
       </Button>
     </View>
   );
@@ -91,12 +83,9 @@ const styles = StyleSheet.create({
     marginTop: 16,
     paddingVertical: 6,
   },
-  link: {
-    marginTop: 12,
-  },
   error: {
     color: "red",
-    textAlign: "center",
     marginBottom: 8,
+    textAlign: "center",
   },
 });
