@@ -33,20 +33,6 @@ export default function TabLayout() {
         }}
       />
       <Tabs.Screen
-        name="explore"
-        options={{
-          title: 'Explore',
-          tabBarIcon: ({ color }) => <IconSymbol size={28} name="paperplane.fill" color={color} />,
-        }}
-      />
-      <Tabs.Screen
-        name="details"
-        options={{
-          title: 'Details',
-          tabBarIcon: ({ color }) => <IconSymbol size={28} name="chevron.right" color={color} />,
-        }}
-      />
-      <Tabs.Screen
         name="createAccount"
         options={{
           title: 'Create Account',
@@ -59,6 +45,30 @@ export default function TabLayout() {
           title: 'Login',
           tabBarIcon: ({ color }) => <IconSymbol size={28} name="house.fill" color={color} />,
         }}
+      />
+      <Tabs.Screen
+        name="homePage"
+        options={{ tabBarButton: () => null }}
+        // options={{
+        //   title: 'HomePage',
+        //   tabBarIcon: ({ color }) => <IconSymbol size={28} name="house.fill" color={color} />,
+        // }}
+      />
+      <Tabs.Screen
+        name="createPost"
+        options={{ tabBarButton: () => null }}
+        // options={{
+        //   title: 'HomePage',
+        //   tabBarIcon: ({ color }) => <IconSymbol size={28} name="house.fill" color={color} />,
+        // }}
+      />
+      <Tabs.Screen
+        name="posts"
+        options={{ tabBarButton: () => null }}
+        // options={{
+        //   title: 'HomePage',
+        //   tabBarIcon: ({ color }) => <IconSymbol size={28} name="house.fill" color={color} />,
+        // }}
       />
     </Tabs>
   );

@@ -1,40 +1,42 @@
-import ParallaxScrollView from '@/components/ParallaxScrollView';
-import { ThemedText } from '@/components/ThemedText';
-import { ThemedView } from '@/components/ThemedView';
-import { IconSymbol } from '@/components/ui/IconSymbol';
-import { StyleSheet } from 'react-native';
+import { StyleSheet, View } from 'react-native';
+import { Text } from "react-native-paper";
 
 
-export default function Posts(){
-    return (
-        <ParallaxScrollView
-        headerBackgroundColor={{ light: '#D0D0D0', dark: '#353636' }}
-        headerImage={
-            <IconSymbol
-            size={310}
-            color="#808080"
-            name="chevron.left.forwardslash.chevron.right"
-            style={styles.headerImage}
-            />
-        }>
-            <ThemedView style={styles.titleContainer}>
-                <ThemedText type="title">Título: </ThemedText>
-            </ThemedView>
-
-        </ParallaxScrollView>
-    )
+export default function PostsScreen(){
+  return (
+      <View style={styles.container}>
+        <Text style={styles.title}>
+          TESTANDO POSTS
+        </Text>
+      </View>
+  )
 }
 
 
 const styles = StyleSheet.create({
-  headerImage: {
-    color: '#808080',
-    bottom: -90,
-    left: -35,
-    position: 'absolute',
+  container: {
+    flex: 1,
+    padding: 24,
+    justifyContent: "center",
+    backgroundColor: "#fff",
   },
-  titleContainer: {
-    flexDirection: 'row',
-    gap: 8,
+  title: {
+    marginBottom: 24,
+    textAlign: "center",
+  },
+  input: {
+    marginBottom: 16,
+  },
+  button: {
+    marginTop: 16,
+    paddingVertical: 6,
+  },
+  link: {
+    marginTop: 12,
+  },
+  error: {
+    color: "red",
+    textAlign: "center",
+    marginBottom: 8,
   },
 });

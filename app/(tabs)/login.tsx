@@ -1,7 +1,7 @@
 import { useRouter } from "expo-router";
 import { signInWithEmailAndPassword } from "firebase/auth";
 import React, { useState } from "react";
-import { StyleSheet, View } from "react-native";
+import { Alert, StyleSheet, View } from "react-native";
 import { ActivityIndicator, Button, Text, TextInput } from "react-native-paper";
 import { auth } from "../../firebase/config"; // adjust path if needed
 
@@ -17,9 +17,15 @@ export default function LoginScreen() {
     setLoading(true);
     setError("");
 
+    if (!auth) {
+      setError("Erro na inicialização do Firebase. Tente reiniciar o app.");
+      Alert.alert("Erro", "Não foi possível conectar ao Firebase.");
+      return;
+    }
+
     try {
       await signInWithEmailAndPassword(auth, email.trim(), password);
-      router.replace("index"); // or `router.push("/home")`
+      router.replace("/homePage"); // or `router.push("/home")`
     } catch (err: unknown) {
       if (err instanceof Error) {
         setError(err.message);

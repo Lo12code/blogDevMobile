@@ -18,9 +18,25 @@ export default function RootLayout() {
     return null;
   }
 
+  const headerBackgroundColor = colorScheme === 'dark' ? '#1c1c1c' : '#f2f2f2'; // Exemplo de cores
+  const headerTextColor = colorScheme === 'dark' ? '#ffffff' : '#000000'; // Exemplo de cores
+
+
   return (
     <ThemeProvider value={colorScheme === 'dark' ? DarkTheme : DefaultTheme}>
-      <Stack>
+      <Stack
+        screenOptions={{
+          headerStyle: {
+            backgroundColor: headerBackgroundColor, // Cor de fundo do header
+          },
+          headerTintColor: headerTextColor, // Cor do título e do botão de voltar
+          headerTitleStyle: {
+            fontWeight: 'bold', // Estilo do texto do título
+            // fontFamily: 'SuaFonteAqui', // Se tiver fontes customizadas
+          },
+          // Você pode adicionar outras opções padrão aqui
+        }}
+      >
         <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
         <Stack.Screen name="+not-found" />
       </Stack>

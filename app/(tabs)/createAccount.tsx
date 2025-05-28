@@ -1,7 +1,7 @@
 import { useRouter } from "expo-router";
 import { createUserWithEmailAndPassword } from "firebase/auth";
 import React, { useState } from "react";
-import { StyleSheet, View } from "react-native";
+import { Alert, StyleSheet, View } from "react-native";
 import { ActivityIndicator, Button, Text, TextInput } from "react-native-paper";
 import { auth } from "../../firebase/config";
 
@@ -15,6 +15,12 @@ export default function CreateAccountScreen() {
   const handleCreateAccount = async () => {
     setLoading(true);
     setError("");
+
+    if (!auth) {
+        setError("Erro na inicialização do Firebase. Tente reiniciar o app.");
+        Alert.alert("Erro", "Não foi possível conectar ao Firebase.");
+        return;
+    }
 
     try {
       await createUserWithEmailAndPassword(auth, email.trim(), password);

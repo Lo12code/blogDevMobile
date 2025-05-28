@@ -6,7 +6,6 @@ export default function HomeScreen() {
   return (
     <View style={styles.container}>
       <Text style={{color: 'rgb(255, 255, 255)'}}>HOME TESTE</Text>
-      <Link style={{color: 'rgb(255, 255, 255)'}} href='/(tabs)/details'> View details </Link>
       <Link style={{color: 'rgb(255, 255, 255)'}} href='/(tabs)/createAccount'> Create account </Link>
       <Link style={{color: 'rgb(255, 255, 255)'}} href='/(tabs)/login'> Sign in </Link>
     </View>
