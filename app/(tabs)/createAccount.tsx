@@ -24,7 +24,7 @@ export default function CreateAccountScreen() {
 
     try {
       await createUserWithEmailAndPassword(auth, email.trim(), password);
-      router.replace("/login"); // ✅ navegação via expo-router
+      router.replace("/(tabs)/login"); // ✅ navegação via expo-router
     } catch (error: unknown) {
       if (error instanceof Error) {
         setError(error.message);
@@ -67,6 +67,24 @@ export default function CreateAccountScreen() {
       >
         {loading ? <ActivityIndicator color="white" /> : "Sign Up"}
       </Button>
+      <Button
+        mode="contained"
+        onPress={
+          () => {
+            if(router.canGoBack()){
+              console.log("TEST")
+              router.back();
+            }else{
+              router.push("/")
+            }
+          }
+        }
+        disabled={loading}
+        style={styles.button}
+      >
+        {loading ? <ActivityIndicator color="white" /> : "Go back"}
+      </Button>
+      
     </View>
   );
 }

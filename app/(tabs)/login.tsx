@@ -25,7 +25,7 @@ export default function LoginScreen() {
 
     try {
       await signInWithEmailAndPassword(auth, email.trim(), password);
-      router.replace("/homePage"); // or `router.push("/home")`
+      router.push("/(tabs)/homePage");
     } catch (err: unknown) {
       if (err instanceof Error) {
         setError(err.message);

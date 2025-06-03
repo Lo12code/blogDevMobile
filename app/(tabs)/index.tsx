@@ -1,13 +1,29 @@
-import { Link } from 'expo-router';
-import { StyleSheet, Text, View } from 'react-native';
-
+import { useRouter } from 'expo-router';
+import { useState } from 'react';
+import { ActivityIndicator, StyleSheet, Text, View } from 'react-native';
+import { Button } from "react-native-paper";
 
 export default function HomeScreen() {
+  const router = useRouter();
+  const [loading, setLoading] = useState(false);
+
   return (
     <View style={styles.container}>
-      <Text style={{color: 'rgb(255, 255, 255)'}}>HOME TESTE</Text>
-      <Link style={{color: 'rgb(255, 255, 255)'}} href='/(tabs)/createAccount'> Create account </Link>
-      <Link style={{color: 'rgb(255, 255, 255)'}} href='/(tabs)/login'> Sign in </Link>
+      <Text style={styles.title}>HOME TESTE</Text>
+      <Button
+        mode="contained"
+        onPress={() => router.push("/(tabs)/createAccount")}
+        style={styles.button}
+      >
+        {loading ? <ActivityIndicator color="white" /> : "Criar conta"}
+      </Button>
+      <Button
+        mode="contained"
+        onPress={() => router.push("/(tabs)/login")}
+        style={styles.button}
+      >
+        {loading ? <ActivityIndicator color="white" /> : "Login"}
+      </Button>
     </View>
   );
 }

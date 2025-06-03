@@ -16,7 +16,7 @@ export default function HomePageScreen() {
             </Text>
             <Button
                 mode="contained"
-                onPress={() => router.push("/posts")}
+                onPress={() => router.push("/(tabs)/posts")}
                 disabled={loading}
                 style={styles.button}
             >
@@ -24,7 +24,7 @@ export default function HomePageScreen() {
             </Button>
             <Button
                 mode="contained"
-                onPress={() => router.push("/createPost")}
+                onPress={() => router.push("/(tabs)/createPost")}
                 disabled={loading}
                 style={styles.button}
             >
